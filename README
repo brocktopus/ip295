@@ -1,1 +1,3 @@
 This project is a collection of Arduino and Processing sketches, along with related texts, for the Fall 2011 semester IP 295 "Introduction to Humanities Physical Computing" course at North Carolina State University.
+
+To make full use of the sketches, you'll need to download the IDEs for Processing (http://www.processing.org) and Arduino (http://www.arduino.cc), as well as picking up an Arduino microcontroller.
