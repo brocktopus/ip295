@@ -31,12 +31,12 @@ import twitter4j.*;
 // Good luck, and have fun!
 
 // This is where you enter your Oauth info
-static String OAuthConsumerKey = "iVBrcvhJkhT72WXaVyo5gg";
-static String OAuthConsumerSecret = "1XLR86s0N4YJ4LvUrEzzkIV8KGBgcQsDYUfFdn8WNA";
+static String OAuthConsumerKey = "";
+static String OAuthConsumerSecret = "";
 
 // This is where you enter your Access Token info
-static String AccessToken = "223520753-bnSzUxPR27hOsEICbJ9egz6Z53dLeQoOB0RzJj9i";
-static String AccessTokenSecret = "13zKLP1vRP6OZ91PZPdQhaivQUXQCCTtKqyDqtKOgk";
+static String AccessToken = "";
+static String AccessTokenSecret = "";
 
 Twitter twitter = new TwitterFactory().getInstance();
 RequestToken requestToken;
