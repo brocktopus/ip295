@@ -48,21 +48,21 @@ color c;
 String cs;
 int light = 0;
 
-String day = "-" + day();
-String month = "-" + month();
-String year = "" + year();
-
-String date = "" + year + month + day;
+// This sets today's date - the search results will be restricted
+// to within the last 24 hours
+Calendar now = Calendar.getInstance();
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+String date = dateFormat.format(now.getTime());
 
 // Here are the terms that Processing will search for
-String queryStr1 = "arduino";
-String queryStr2 = "peace";
-String queryStr3 = "love";
+String keyword1 = "arduino";
+String keyword2 = "peace";
+String keyword3 = "love";
 
 // These are the search results counters
-int keyword1 = 0;
-int keyword2 = 0;
-int keyword3 = 0;
+int counter1 = 0;
+int counter2 = 0;
+int counter3 = 0;
 
 void setup() {
   
@@ -84,24 +84,24 @@ void draw() {
   background(c);
   int n = (interval - ((millis()-lastTime)/1000));
   
-  c = color(keyword1, keyword2, keyword3);
+  c = color(counter1, counter2, counter3);
   cs = "#" + hex(c,6);
   
   text("Arduino Networked Lamp", 10, 40);
   
   text("Next update in " + n + " seconds", 10, 100);
 
-  text(queryStr1, 10, 200);
-  text(" " + keyword1, 130, 200);
-  rect(200, 172, keyword1, 28);
+  text(keyword1, 10, 200);
+  text(" " + counter1, 130, 200);
+  rect(200, 172, counter1, 28);
   
-  text(queryStr2, 10, 240);
-  text(" " + keyword2, 130, 240);
-  rect(200, 212, keyword2, 28);
+  text(keyword2, 10, 240);
+  text(" " + counter2, 130, 240);
+  rect(200, 212, counter2, 28);
   
-  text(queryStr3, 10, 280);
-  text(" " + keyword3, 130, 280);
-  rect(200, 252, keyword3, 28);
+  text(keyword3, 10, 280);
+  text(" " + counter3, 130, 280);
+  rect(200, 252, counter3, 28);
   
   text("sending", 10, 340);
   text(cs, 200, 340);
@@ -132,27 +132,27 @@ private static AccessToken loadAccessToken() {
 void getSearchTweets() {
 
   try {
-    Query query1 = new Query(queryStr1);    
+    Query query1 = new Query(keyword1);    
     query1.setRpp(64); // Get the 64 most recent search results  
     query1.setSince(date);
     QueryResult result1 = twitter.search(query1);    
     ArrayList tweets1 = (ArrayList) result1.getTweets();    
     
-    Query query2 = new Query(queryStr2);    
+    Query query2 = new Query(keyword2);    
     query2.setRpp(64); // Get the 64 most recent search results 
 //    query2.setSince(date); 
     QueryResult result2 = twitter.search(query2);    
     ArrayList tweets2 = (ArrayList) result2.getTweets();
     
-    Query query3 = new Query(queryStr3);    
+    Query query3 = new Query(keyword3);    
     query3.setRpp(64); // Get the 64 most recent search results 
 //    query3.setSince(date); 
     QueryResult result3 = twitter.search(query3);    
     ArrayList tweets3 = (ArrayList) result3.getTweets();    
 
-keyword1 = tweets1.size() * 4;
-keyword2 = tweets2.size() * 4;
-keyword3 = tweets3.size() * 4;
+counter1 = tweets1.size() * 4;
+counter2 = tweets2.size() * 4;
+counter3 = tweets3.size() * 4;
 
   } 
     catch (TwitterException e) {
