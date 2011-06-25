@@ -48,12 +48,6 @@ color c;
 String cs;
 int light = 0;
 
-// This sets today's date - the search results will be restricted
-// to within the last 24 hours
-Calendar now = Calendar.getInstance();
-SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-String date = dateFormat.format(now.getTime());
-
 // Here are the terms that Processing will search for
 String keyword1 = "arduino";
 String keyword2 = "peace";
@@ -130,6 +124,26 @@ private static AccessToken loadAccessToken() {
 
 // Search for tweets
 void getSearchTweets() {
+
+  String thisyear = "" + year();
+  String thismonth;
+  String thisday;
+
+  if (month() < 10) {
+    thismonth = "-0" + month();
+  } 
+  else {
+    thismonth = "-" + month();
+  }
+
+  if (day() < 10) {
+    thisday = "-0" + day();
+  } 
+  else {
+    thisday = "-" + day();
+  }
+
+  String date = "" + thisyear + thismonth + thisday;
 
   try {
     Query query1 = new Query(keyword1);    
